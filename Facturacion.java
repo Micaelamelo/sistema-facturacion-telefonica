@@ -23,6 +23,17 @@ public class Facturacion {
 		return total;
 	}
 	
+	public float getCostoTipo(ArrayList<Llamadas> L, String T){
+		float total=0;
+		
+		for(Llamadas l: L){
+			if(l.getTipo().getTipo().equals(T))
+			 total=total+costo.getCosto(l);
+		}
+		
+		return total;
+	}
+	
 	public float getCostoLlamada(Llamadas l){
 		return costo.getCosto(l);
 	}

@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Calendar;
-
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeFormatter;
 
@@ -20,8 +18,7 @@ public class Factura {
 	    LocalDateTime date3_1 = LocalDateTime.of(2020, 02, 18, 7, 30);
 	    LocalDateTime date4 = LocalDateTime.of(2020, 02, 18, 8, 30);
 	    
-
-		Facturacion facturacion= new Facturacion(500, facturaEmision, costo );
+		Facturacion facturacion= new Facturacion(500, facturaEmision, costo);
 		
 		ArrayList<Llamadas> llamadas =new ArrayList<Llamadas>();
 		
@@ -38,7 +35,6 @@ public class Factura {
 		Llamadas l4= new Llamadas(n1, n4, date3_1, date4);
 		Llamadas l5= new Llamadas(n1, n5, date3_1, date4);
 
-		
 		llamadas.add(l0);
 		llamadas.add(l1);
 		llamadas.add(l2);
@@ -71,12 +67,17 @@ public class Factura {
         }
         
         float costoTotalLlamadas= facturacion.getCostoTotalLlamadas(llamadas);
+        
+        System.out.println("Costo llamadas locales: $" + facturacion.getCostoTipo(llamadas, "Local"));
+        
+        System.out.println("Costo llamadas nacionales: $" + facturacion.getCostoTipo(llamadas, "Nacional"));
 
+        System.out.println("Costo llamadas internacionales: $"+ facturacion.getCostoTipo(llamadas, "Internacional"));
+        
         System.out.println("Costo total en llamadas: $" + costoTotalLlamadas);
 
         System.out.println("Costo total de la factura: $" + (costoTotalLlamadas+facturacion.getAbonoMensual()));                
-
- 	
+	
 	}
 
 }

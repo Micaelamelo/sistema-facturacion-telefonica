@@ -19,6 +19,7 @@ public class Costos {
 				else
 					if(!horaPico(l.getHoraLlamadaInicio()) && !horaPico(l.getHoraLlamadaFin())) //ocurre dentro del lapso de hora no pico 
 						costototal= (duracion*costoLocal_NoPico);
+				
 					else {
 						LocalTime aux2= LocalTime.of(l.getHoraLlamadaInicio().getHour(), l.getHoraLlamadaInicio().getMinute());
 						LocalTime aux3= LocalTime.of(l.getHoraLlamadaFin().getHour(), l.getHoraLlamadaFin().getMinute());
@@ -52,7 +53,7 @@ public class Costos {
 				
 			case "Internacional":
 				switch(l.getNroDestinatario().getCodigoPais()){
-					case 1: costototal= (float) (duracion*0.50);
+					case 1:  costototal= (float) (duracion*0.50);
 					break;
 					case 57: costototal= (float) (duracion*0.70);
 					break;
