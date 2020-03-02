@@ -43,17 +43,21 @@ public class Costos {
 			case "Nacional": //se asume que con base de datos, cada destino tendra su costo 
 				switch(l.getNroDestinatario().getCodigoArea()){
 					case 291: costototal= (float) (duracion*0.15);
+					break;
 					case 011: costototal= (float) (duracion*0.11);
+					break;
 					case 297: costototal= (float) (duracion*0.14);
 				}
 				break;
 			case "Internacional":
 				switch(l.getNroDestinatario().getCodigoPais()){
 					case 1: costototal= (float) (duracion*0.50);
+					break;
 					case 57: costototal= (float) (duracion*0.70);
+					break;
 					case 64: costototal= (float) (duracion*0.60);
+					break;
 			}
-				break;
 		}
 	
 	return costototal;
