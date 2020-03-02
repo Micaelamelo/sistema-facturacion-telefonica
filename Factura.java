@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter;
 
 public class Factura {
 	
@@ -30,8 +31,6 @@ public class Factura {
 		NroTelefono n4= new NroTelefono(1,  22,  12312474);
 		NroTelefono n5= new NroTelefono(54, 011, 12312474);
 
-		
-
 		Llamadas l0= new Llamadas(n1, n3, date0, date1);
 		Llamadas l1= new Llamadas(n1, n2, date1, date2);
 		Llamadas l2= new Llamadas(n1, n2, date1, date2);
@@ -50,7 +49,7 @@ public class Factura {
 		System.out.println("Sistema de Facturación");
 		System.out.println("Abono mensual: $" + facturacion.abonoMensual);
 		System.out.println("Consumo de llamadas");
-		System.out.println("Tipo de llamada | Número Destino | Fecha y hora de inicio de llamada | Duración en minutos | Costo de la llamada");
+		System.out.println("Tipo de llamada | Número Destino | Fecha y hora de inicio de llamada | Fecha y hora de fin de llamada | Duración | Costo de la llamada");
         
         for(Llamadas l: llamadas){
         	
@@ -58,9 +57,12 @@ public class Factura {
         	
         	System.out.print(l.getNroDestinatario().toString() + " | ");
         	
-        	System.out.print(l.getHoraLlamadaInicio().toString() + " | ");
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+        	System.out.print(l.getHoraLlamadaInicio().format(myFormatObj) + " | ");
+        	System.out.print(l.getHoraLlamadaFin().format(myFormatObj) + " | ");
         	
-        	System.out.print(l.getDuracion() + " | ");
+        	System.out.print(l.getDuracion() + " minutos | ");
         	
         	System.out.print("$" + facturacion.getCostoLlamada(l));
 
