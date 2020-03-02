@@ -27,20 +27,25 @@ public class Factura {
 		NroTelefono n1= new NroTelefono(54, 291, 154128089);
 		NroTelefono n2= new NroTelefono(54, 291, 154912312);
 		NroTelefono n3= new NroTelefono(54, 291, 12312474);
+		NroTelefono n4= new NroTelefono(1,  22,  12312474);
+		NroTelefono n5= new NroTelefono(54, 011, 12312474);
+
 		
 
 		Llamadas l0= new Llamadas(n1, n3, date0, date1);
 		Llamadas l1= new Llamadas(n1, n2, date1, date2);
 		Llamadas l2= new Llamadas(n1, n2, date1, date2);
 		Llamadas l3= new Llamadas(n1, n3, date2, date3);
-		Llamadas l4= new Llamadas(n1, n3, date3_1, date4);
+		Llamadas l4= new Llamadas(n1, n4, date3_1, date4);
+		Llamadas l5= new Llamadas(n1, n5, date3_1, date4);
+
 		
 		llamadas.add(l0);
 		llamadas.add(l1);
 		llamadas.add(l2);
 		llamadas.add(l3);
 		llamadas.add(l4);
-		
+		llamadas.add(l5);
 
 		System.out.println("Sistema de Facturación");
 		System.out.println("Abono mensual: $" + facturacion.abonoMensual);

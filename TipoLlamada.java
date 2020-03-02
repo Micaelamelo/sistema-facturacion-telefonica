@@ -6,8 +6,8 @@ public class TipoLlamada {
 	public TipoLlamada(NroTelefono origen, NroTelefono destino){
 		int codigopaisO= origen.getCodigoPais();
 		int codigoareaO= origen.getCodigoArea();
-		int codigopaisD= origen.getCodigoPais();
-		int codigoareaD= origen.getCodigoArea();
+		int codigopaisD= destino.getCodigoPais();
+		int codigoareaD= destino.getCodigoArea();
 		
 		if (codigopaisO==codigopaisD){
 			if(codigoareaO==codigoareaD){
