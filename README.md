@@ -24,7 +24,7 @@ Diseñar un sistema de facturación de llamadas telefónicas teniendo en cuenta 
 
 ### Consideraciones
 
-- Se asume que no habrá llamadas que duren más de 24 horas, esto es,  que comiencen y terminen en horario pico habiendo una franja horaria NO pico en el medio (o viceversa). Ejemplo: Llamada que inicia a las 9AM, y finaliza a las 9AM del día siguiente, habiendo en el medio un lapso de hora no pico (20 PM a 8 AM).
+- Se asume que no habrá llamadas que duren más de 12 horas, esto es, comiencen y terminen en horario pico habiendo una franja horaria NO pico en el medio (o viceversa). Ejemplo: Llamada que inicia a las 9AM, y finaliza a las 9AM del día siguiente (horarios pico), habiendo en el medio un lapso de hora no pico (20 PM a 8 AM). 
 
 - Para las llamadas nacionales e internacionles se asume que para cada localidad/pais hay un costo definido, en este ejercicio se pusieron 3 ejemplos a modo ilustrativo. 
 
