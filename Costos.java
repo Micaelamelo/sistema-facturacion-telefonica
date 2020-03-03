@@ -2,7 +2,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Costos {
+public class Costos {	//clase encargada de calcular el costo de cada llamada
 	
 	private float costoLocal_Pico= (float) 0.20;
 	private float costoLocal_NoPico= (float) 0.10;
@@ -14,32 +14,14 @@ public class Costos {
 		
 		switch(tipo){
 			case "Local":
-				if(horaPico(l.getHoraLlamadaInicio()) && horaPico(l.getHoraLlamadaFin())) //si la llamada ocurre durante el rango de hora pico{
-					costototal=(float) (duracion*costoLocal_Pico);
-				else
-					if(!horaPico(l.getHoraLlamadaInicio()) && !horaPico(l.getHoraLlamadaFin())) //ocurre dentro del lapso de hora no pico 
-						costototal= (duracion*costoLocal_NoPico);
-				
-					else {
-						LocalTime aux2= LocalTime.of(l.getHoraLlamadaInicio().getHour(), l.getHoraLlamadaInicio().getMinute());
-						LocalTime aux3= LocalTime.of(l.getHoraLlamadaFin().getHour(), l.getHoraLlamadaFin().getMinute());
-						
-						if(!horaPico(l.getHoraLlamadaInicio()) && horaPico(l.getHoraLlamadaFin())){	//comienza en hora no pico y termina en hora pico		
-							LocalTime aux= LocalTime.of(8, 00);
-							
-							long minutosHoraNoPico=  Duration.between(aux2, aux).toMinutes();
-							long minutosHoraPico= Duration.between(aux, aux3).toMinutes();
-							costototal= minutosHoraPico*costoLocal_Pico + minutosHoraNoPico*costoLocal_NoPico;
-						}
-						
-						if(horaPico(l.getHoraLlamadaInicio()) && !horaPico(l.getHoraLlamadaFin())){ //comienza en hora pico y termina en no pico 
-							LocalTime aux= LocalTime.of(20, 00);
-							
-							long minutosHoraPico=  Duration.between(aux2, aux).toMinutes();
-							long minutosHoraNoPico= Duration.between(aux, aux3).toMinutes();
-							costototal= minutosHoraPico*costoLocal_Pico + minutosHoraNoPico*costoLocal_NoPico;
-						}	
-					}
+				if(horaPico(l.getHoraLlamadaInicio()) && horaPico(l.getHoraLlamadaFin()))  //si la llamada ocurre durante el rango de hora pico{
+					costototal= (duracion*costoLocal_Pico);
+				if(!horaPico(l.getHoraLlamadaInicio()) && !horaPico(l.getHoraLlamadaFin())) //ocurre dentro del lapso de hora no pico 
+					costototal= (duracion*costoLocal_NoPico);				
+				if(!horaPico(l.getHoraLlamadaInicio()) && horaPico(l.getHoraLlamadaFin()))	//comienza en hora no pico y termina en hora pico		
+					costototal= auxHoraPicoNoPico(l, 8);				
+				if(horaPico(l.getHoraLlamadaInicio()) && !horaPico(l.getHoraLlamadaFin())) //comienza en hora pico y termina en no pico 
+					costototal= auxHoraPicoNoPico(l, 20);						
 			break;	
 			
 			case "Nacional": //se asume que con base de datos, cada destino tendra su costo 
@@ -66,8 +48,20 @@ public class Costos {
 		
 	}
 	
+	private float auxHoraPicoNoPico(Llamadas l, int limite){ //metodo auxiliar que calcula los minutos ocurridos en hora pico y en hora no pico
+		LocalTime aux= LocalTime.of(limite, 00);
+		
+		LocalTime aux2= LocalTime.of(l.getHoraLlamadaInicio().getHour(), l.getHoraLlamadaInicio().getMinute());
+		LocalTime aux3= LocalTime.of(l.getHoraLlamadaFin().getHour(), l.getHoraLlamadaFin().getMinute());
+		
+		long minutosHoraNoPico=  Duration.between(aux2, aux).toMinutes();	//minutos de inicio de llamada hasta las 8/20 
+		long minutosHoraPico=    Duration.between(aux, aux3).toMinutes();	//minutos desde las 8/20 hasta fin de llamda
+		
+		return minutosHoraPico*costoLocal_Pico + minutosHoraNoPico*costoLocal_NoPico;
+		
+	}
 	
-	private boolean horaPico(LocalDateTime t){
+	private boolean horaPico(LocalDateTime t){	//retorna true si el horario pasado por parámetro está dentro de la franja de hora pico
 		int date = t.getDayOfWeek().getValue();
 		int time = t.getHour();
 		

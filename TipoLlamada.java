@@ -3,7 +3,7 @@ public class TipoLlamada {
 
 	protected String tipo;
 	
-	public TipoLlamada(NroTelefono origen, NroTelefono destino){
+	public TipoLlamada(NroTelefono origen, NroTelefono destino){	//los tipos de llamadas dependeran del codigo de pais y codigo de area de cada numero 
 		int codigopaisO= origen.getCodigoPais();
 		int codigoareaO= origen.getCodigoArea();
 		int codigopaisD= destino.getCodigoPais();

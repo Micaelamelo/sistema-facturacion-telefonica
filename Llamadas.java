@@ -11,7 +11,7 @@ public class Llamadas {
 	public Llamadas(NroTelefono ne, NroTelefono nd, LocalDateTime hi, LocalDateTime hf){
 		nroEmisor=ne;
 		nroDestinatario=nd;
-		tipo=new TipoLlamada(ne, nd);
+		tipo=new TipoLlamada(ne, nd);	//al momento de crear la llamada, se le asigna el tipo de llamada
 		duracion= Duration.between(hi, hf).toMinutes();
 		horaLlamadaInicio=hi;
 		horaLlamadaFin=hf;
