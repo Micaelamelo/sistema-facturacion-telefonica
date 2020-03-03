@@ -21,3 +21,11 @@ Diseñar un sistema de facturación de llamadas telefónicas teniendo en cuenta 
 - No es necesario realizar una interfaz de usuario visual.
 - No es necesario realizar persistencia de los datos (conexión a base de datos, archivos, etc.). Alcanza con simular los datos creándolos en memoria.
 - Como salida alcanza ver por pantalla como sería una factura (sin preocuparse por darle un formato especial)
+
+### Consideraciones
+
+- Se asume que no habrá llamadas que duren más de 24 horas, esto es,  que comiencen y terminen en horario pico habiendo una franja horaria NO pico en el medio (o viceversa). Ejemplo: Llamada que inicia a las 8AM, y finaliza a las 8AM del día siguiente, habiendo en el medio un lapso de hora no pico (20 PM a 8 AM).
+
+- Para las llamadas nacionales e internacionles se asume que hay para cada localidad/pais un costo definido, en este ejercicio se pusieron 3 ejemplos a modo ilustrativo. 
+
+
